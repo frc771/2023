@@ -4,8 +4,8 @@
 
 package frc.robot.subsystems;
 
-import com.revbotics.CANSparkMax;
-import com.revbotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
@@ -13,7 +13,7 @@ public class Claw extends SubsystemBase {
   private CANSparkMax CANSparkMax1;
   /** Creates a new Claw. */
   public Claw() {
-    CANSparkMax1 = new CANSparkMax(1);
+    CANSparkMax1 = new CANSparkMax(9, MotorType.kBrushless); //configure roboRIO to assign SparkMax to ID 9
   }
 
   public void Up(){

@@ -7,21 +7,31 @@ package frc.robot.commands;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-import java.util.DoubleSummaryStatistics;
+//import java.util.DoubleSummaryStatistics;
 import java.util.function.DoubleSupplier;
-import edu.wpi.first.wpilibj.Joystick;
+
+/*import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Robot;
 import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.*; */
 
-public class IntakeOut extends CommandBase {
-  private final Intake m_Intake;
-  /** Creates a new IntakeOut. */
-  public IntakeOut(Intake intake) {
-    m_Intake = intake;
-    addRequirements(m_Intake);
+public class DriveCommand extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private Drive m_subsystem;
+  private DoubleSupplier x;
+  private DoubleSupplier y;
+
+
+  /** Creates a new DriveCommand. */
+  public DriveCommand(Drive subsystem, DoubleSupplier one, DoubleSupplier two) {
+    m_subsystem = subsystem;
+
+    x = one;
+    y = two;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_subsystem);
   }
+  
 
   // Called when the command is initially scheduled.
   @Override
@@ -30,7 +40,7 @@ public class IntakeOut extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Intake.Out();
+    m_subsystem.DriveCode(x.getAsDouble(), y.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

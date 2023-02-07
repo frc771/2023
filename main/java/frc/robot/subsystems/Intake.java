@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
-import.com.ctre.phoenix.motorcontrol.can;
+import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.commands.*;
 
 public class Intake extends SubsystemBase {

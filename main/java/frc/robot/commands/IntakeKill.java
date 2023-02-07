@@ -17,7 +17,7 @@ import frc.robot.subsystems.*;
 public class IntakeKill extends CommandBase {
   private final Intake m_Intake;
   /** Creates a new IntakeKill. */
-  public IntakeKill() {
+  public IntakeKill(Intake intake) {
     m_Intake = intake;
     addRequirements(m_Intake);
     // Use addRequirements() here to declare subsystem dependencies.

@@ -4,23 +4,16 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import java.util.DoubleSummaryStatistics;
-import java.util.function.DoubleSupplier;
-import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.Robot;
-import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class IntakeOut extends CommandBase {
-  private final Intake m_Intake;
-  /** Creates a new IntakeOut. */
-  public IntakeOut(Intake intake) {
-    m_Intake = intake;
-    addRequirements(m_Intake);
+public class ClawKill extends CommandBase {
+  private final Claw m_Claw;
+  /** Creates a new ClawKill. */
+  public ClawKill(Claw claw) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_Claw = claw;
+    addRequirements(m_Claw);
   }
 
   // Called when the command is initially scheduled.
@@ -30,7 +23,7 @@ public class IntakeOut extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Intake.Out();
+    m_Claw.Down();
   }
 
   // Called once the command ends or is interrupted.

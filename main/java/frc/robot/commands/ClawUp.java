@@ -5,10 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.*;
 
 public class ClawUp extends CommandBase {
+  private final Claw m_Claw;
   /** Creates a new ClawUp. */
-  public ClawUp() {
+  public ClawUp(Claw claw) {
+    m_Claw = claw;
+    addRequirements(m_Claw);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,7 +22,9 @@ public class ClawUp extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_Claw.Up();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
