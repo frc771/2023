@@ -85,11 +85,13 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    myStartTime = System.currentTimeMillis();
-    System.out.println("myStartTime " + myStartTime);
-    myTime = 0.0;
-  //  Drive.MotorControllerGroup.set(0.8);
-  // Drive.MotorControllerGroup2.set(0.8);
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    startTime = Timer.getFPGATimestamp();
+
+    // schedule the autonomous command (example)
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
 
     }
   
@@ -98,17 +100,14 @@ public class Robot extends TimedRobot {
   @Override
    public void autonomousPeriodic() {
 
-   myTime = (System.currentTimeMillis()-myStartTime)/1000;
-    //System.out.println("myTime " + myTime);
-    
-    if((myTime>0.0)&&(myTime<5.0)) {
- 
-     System.out.println("Stage 1: "+myTime);
-
-     Drive.broombroom();
- 
-    // Drive.MotorControllerGroup.set(0.8);
-    // Drive.MotorControllerGroup2.set(-0.8);
+    double time = Timer.getFPGATimestamp();
+    if(time-startTime <1){
+      //Drive.MotorControllerGroup.set(-0.4);
+      //Drive.MotorControllerGroup2.set(0.35);
+    }
+    else{
+     // ((Drive)m_subsystem).DriveBackward(1);
+    };
  
    }
   // if((myTime>5.1)&&(myTime<10.0)) {
@@ -117,16 +116,7 @@ public class Robot extends TimedRobot {
   //  Drive.MotorControllerGroup.set(0);
   //  Drive.MotorControllerGroup2.set(0);
  //  }
-   if((myTime>5)&&(myAutoFinished == false)){
- 
-     myAutoFinished = true;
-     Drive.DriveStop();
-     System.out.println("Finished");
-     // Drive.MotorControllerGroup.set(0);
-    //Drive.MotorControllerGroup2.set(0);
-    }
-   
-  }
+
 
   @Override
   public void teleopInit() {

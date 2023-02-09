@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 
@@ -46,7 +46,7 @@ public class Drive extends SubsystemBase {
     //MotorControllerGroup2.set(0);
     //leftSpeed: -0.8 = clockwise
     //leftSpeed: 0.8 = counterclockwise
-    differentialDrive1.tankDrive(-0.8,0.8);
+    differentialDrive1.tankDrive(-0.7,0.7);
   }
 
 

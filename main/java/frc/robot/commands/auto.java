@@ -18,93 +18,55 @@ import frc.robot.Robot;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-
-
 //public class auto extends Drive {
 public class auto extends CommandBase {
 
   private final Drive m_subsystem;
 
-  double myStartTime;
-  double myTime;
-  boolean myAutoFinished = false;
-
   /**
    * Creates a new DriveCommand.
    *
-   * 
-   * @param subsystem The subsystem used by this command. */
-
-
-  // Called when the command is initially scheduled.
-
-public auto(Drive subsystems) {
-
-  m_subsystem = subsystems;
-
-  getRequirements(m_subsystem);
-
-}
-
-private void getRequirements(Drive subsystem){}
-
-@Override
-public void initialize() {
-   // myStartTime = System.currentTimeMillis();
-   // System.out.println("myStartTime " + myStartTime);
-  //  myTime = 0.0;
-  System.out.println("Auto Initialized");
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-
-  @Override
-public void execute() {
-
-  System.out.println("Auto Execute");
-  //myTime = (System.currentTimeMillis()-myStartTime)/1000;
-    //System.out.println("myTime " + myTime);
+   * @param subsystem The subsystem used by this command.
+   */
+  public auto(Drive subsystem) {
+    m_subsystem = subsystem;
     
 
-    // Drive.MotorControllerGroup.set(0.8);
-    // Drive.MotorControllerGroup2.set(-0.8);
- 
-   //}
-
-  // if((myTime>5.1)&&(myTime<10.0)) {
-  //   System.out.println("Stage 2");
- 
-  //  Drive.MotorControllerGroup.set(0);
-  //  Drive.MotorControllerGroup2.set(0);
- //  }
- /*   myTime = (System.currentTimeMillis()-myStartTime)/1000;
-   System.out.println("myTime " + myTime);
-   
-   if((myTime>-0.0)&&(myTime<5.0)) {
-
-    System.out.println("Stage 1");
-
-    MotorControllerGroup.set(0.8);
-    MotorControllerGroup2.set(0.5);
-
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_subsystem);
   }
-  if((myTime>5.1)&&(myTime<-10.0)) {
-    System.out.println("Stage 2");
 
-    MotorControllerGroup.set(0);
-    MotorControllerGroup2.set(0);
-  }
-  if((myTime>-10)){
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {}
 
-    myAutoFinished = true;
-  }*/
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    double startTime;
+    startTime = Timer.getFPGATimestamp();
+    //m_subsystem.broombroom();
+    double time = Timer.getFPGATimestamp();
+    if(time-startTime <1){
+      Drive.MotorControllerGroup.set(-0.4);
+      Drive.MotorControllerGroup2.set(0.35); //If we want to make it go forwards switch the negative sign
+    }
+    else{
+     ((Drive)m_subsystem).DriveBackward(1); //If we want to make the robot go forward during auto, change 1 to -1
+    };
+    }
+    
   
-}
 
-public boolean isFinished(){
-  return myAutoFinished;
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {}
 
-}
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
 
 }
   
